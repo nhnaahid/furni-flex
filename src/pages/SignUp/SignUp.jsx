@@ -37,7 +37,7 @@ const SignUp = () => {
                 updateUser(name, email)
                     .then(() => {
                         toast.success("Sign up successful!");
-                        navigate('/');
+                        navigate('/products');
                     })
                     .catch(error => toast.error(error.message));
             })

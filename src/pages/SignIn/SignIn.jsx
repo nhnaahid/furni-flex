@@ -1,11 +1,31 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import SocialButtons from "../../components/SocialButtons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CommonHero from "../../components/CommonHero";
+import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
     const [showPass, setShowPass] = useState(false);
+    const { signInUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleSignIn = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        // console.log(email, password);
+
+        signInUser(email, password)
+            .then(() => {
+                toast.success('Sign in successful!');
+                navigate('/products');
+            })
+            .catch(() => toast.error('Incorrect email or password. Please try again.'));
+    }
 
     return (
         <div className='flex items-center'>
@@ -16,12 +36,12 @@ const SignIn = () => {
                     <p>Enter your Credentials to access your account</p>
                 </div>
                 {/* sign in form */}
-                <form className='w-full md:w-4/5 mx-auto p-5 space-y-4 mt-3'>
+                <form onSubmit={handleSignIn} className='w-full md:w-4/5 mx-auto p-5 space-y-4 mt-3'>
 
-                    <input type="email" placeholder="Email Address" className="input input-bordered border-gray-400 w-full" required />
+                    <input type="email" name="email" placeholder="Email Address" className="input input-bordered border-gray-400 w-full" required />
 
                     <div className='relative'>
-                        <input type={showPass ? 'text' : 'password'} placeholder="Password" className="input input-bordered border-gray-400 w-full" required />
+                        <input type={showPass ? 'text' : 'password'} name="password" placeholder="Password" className="input input-bordered border-gray-400 w-full" required />
                         <div onClick={() => setShowPass(!showPass)} className='w-fit absolute right-2 top-4 text-xl'>
                             {
                                 showPass ? <FaEyeSlash /> : <FaEye />

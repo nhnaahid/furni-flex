@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+    console.log(user?.photoURL);
 
     const handleLogout = () => {
         logOut()
@@ -86,9 +88,7 @@ const Navbar = () => {
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-8 md:w-10 rounded-full">
-                                <img
-                                    alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                <img src={user?.photoURL ? user?.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} alt="User Image" />
                             </div>
                         </div>
                         <ul

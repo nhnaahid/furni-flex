@@ -9,13 +9,10 @@ const MainLayout = () => {
 
     return (
         <div className="max-w-screen-2xl mx-auto font-barlow text-black">
-            <div className="h-20">
-                {
-                    location.pathname !== '/signin' && location.pathname !== '/signup' && <Navbar></Navbar>
-                }
-            </div>
 
-
+            {
+                location.pathname !== '/signin' && location.pathname !== '/signup' && <div className="h-20"><Navbar></Navbar></div>
+            }
 
             <Outlet></Outlet>
 
