@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FaApple } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 

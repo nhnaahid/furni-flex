@@ -2,7 +2,7 @@
 
 const ShareButtons = ({name}) => {
     return (
-        <button>{name}</button>
+        <button className='btn bg-black text-white w-full hover:bg-gray-900'>{name}</button>
     );
 };
 
