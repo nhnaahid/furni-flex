@@ -1,12 +1,48 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialButtons from '../../components/SocialButtons';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import CommonHero from '../../components/CommonHero';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
     const [showPass, setShowPass] = useState(false);
+    const { createUser, updateUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleSignUp = e => {
+        e.preventDefault();
+        const form = e.target;
+        const first = form.first.value;
+        const last = form.last.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const isChecked = form.tnp.checked;
+        const name = first + last;
+
+        console.log(name, email, password, isChecked);
+
+        if (password.length < 6 || password.length > 15) {
+            return toast.error('Password must be between 6 and 15 characters.')
+        }
+
+        if (!isChecked) {
+            return toast.error("You must agree to the Terms and Policy.");
+        }
+
+        createUser(email, password)
+            .then(() => {
+                updateUser(name, email)
+                    .then(() => {
+                        toast.success("Sign up successful!");
+                        navigate('/');
+                    })
+                    .catch(error => toast.error(error.message));
+            })
+
+    }
 
     return (
         <div className='flex items-center'>
@@ -18,17 +54,17 @@ const SignUp = () => {
                     <p>Signup for purchase your desire products</p>
                 </div>
                 {/* sign up form */}
-                <form className='w-full md:w-4/5 mx-auto p-5 space-y-4 mt-3'>
+                <form onSubmit={handleSignUp} className='w-full md:w-4/5 mx-auto p-5 space-y-4 mt-3'>
 
                     <div className='flex gap-2'>
-                        <input type="text" placeholder="First Name (Optional)" className="input input-bordered border-gray-400 w-full" />
-                        <input type="text" placeholder="Last Name (Optional)" className="input input-bordered border-gray-400 w-full" />
+                        <input type="text" name='first' placeholder="First Name (Optional)" className="input input-bordered border-gray-400 w-full" />
+                        <input type="text" name='last' placeholder="Last Name (Optional)" className="input input-bordered border-gray-400 w-full" />
                     </div>
 
-                    <input type="email" placeholder="Email Address" className="input input-bordered border-gray-400 w-full" required />
+                    <input type="email" name='email' placeholder="Email Address" className="input input-bordered border-gray-400 w-full" required />
 
                     <div className='relative'>
-                        <input type={showPass ? 'text' : 'password'} placeholder="Password" className="input input-bordered border-gray-400 w-full" required />
+                        <input type={showPass ? 'text' : 'password'} name='password' placeholder="Password" className="input input-bordered border-gray-400 w-full" required />
                         <div onClick={() => setShowPass(!showPass)} className='w-fit absolute right-2 top-4 text-xl'>
                             {
                                 showPass ? <FaEyeSlash /> : <FaEye />

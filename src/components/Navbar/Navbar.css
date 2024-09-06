@@ -1,0 +1,11 @@
+nav a.active {
+    color: rgb(14 165 233);
+}
+
+nav a:hover {
+    color: rgb(14 165 233);
+}
+
+nav button:hover {
+    color: rgb(14 165 233);
+}
