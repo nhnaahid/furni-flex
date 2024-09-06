@@ -1,16 +1,16 @@
 import { FaApple } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
-const SocialButtons = () => {
+const SocialButtons = ({btn1, btn2}) => {
     return (
-        <div className='flex items-center justify-center gap-5'>
-            <button className="btn border border-gray-300">
+        <div className='flex flex-col md:flex-row items-center justify-center gap-5'>
+            <button className="btn border border-gray-400">
                 <FcGoogle className='text-xl' />
-                Sign in with Google
+                {btn1}
             </button>
-            <button className="btn border border-gray-300">
+            <button className="btn border border-gray-400">
                 <FaApple className='text-2xl' />
-                Sign in with Apple
+                {btn2}
             </button>
         </div>
     );
