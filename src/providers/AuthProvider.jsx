@@ -11,6 +11,13 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [cart, setCart] = useState(0);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch('furniture.json')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -58,7 +65,8 @@ const AuthProvider = ({ children }) => {
         updateUser,
         logOut,
         cart,
-        setCart
+        setCart,
+        products
     }
 
     return (

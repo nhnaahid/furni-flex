@@ -13,8 +13,11 @@ const MainLayout = () => {
             {
                 location.pathname !== '/signin' && location.pathname !== '/signup' && <div className="h-20"><Navbar></Navbar></div>
             }
+            <div className="w-4/5 mx-auto">
+                <Outlet></Outlet>
+            </div>
 
-            <Outlet></Outlet>
+            
 
             {
                 location.pathname !== '/signin' && location.pathname !== '/signup' && <Footer></Footer>

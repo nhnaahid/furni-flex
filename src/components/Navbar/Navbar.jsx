@@ -27,7 +27,7 @@ const Navbar = () => {
     </>
 
     return (
-        <nav className="navbar bg-base-100 shadow-md max-w-screen-2xl mx-auto fixed px-3">
+        <nav className="navbar bg-base-100 shadow-md max-w-screen-2xl mx-auto fixed px-3 z-10">
             <div className="navbar-start">
                 {/* Small screen */}
                 <div className="dropdown">
