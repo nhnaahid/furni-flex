@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [cart, setCart] = useState(0);
     const [products, setProducts] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
         fetch('furniture.json')
@@ -66,7 +67,9 @@ const AuthProvider = ({ children }) => {
         logOut,
         cart,
         setCart,
-        products
+        products,
+        cartItems,
+        setCartItems
     }
 
     return (
