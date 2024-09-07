@@ -10,6 +10,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [cart, setCart] = useState(0);
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -55,7 +56,9 @@ const AuthProvider = ({ children }) => {
         signInUser,
         googleSignIn,
         updateUser,
-        logOut
+        logOut,
+        cart,
+        setCart
     }
 
     return (

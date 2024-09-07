@@ -17,7 +17,7 @@ const MainLayout = () => {
             <Outlet></Outlet>
 
             {
-                (location.pathname !== '/signin' || location.pathname !== '/signup') && <Footer></Footer>
+                location.pathname !== '/signin' && location.pathname !== '/signup' && <Footer></Footer>
             }
 
             <ToastContainer
