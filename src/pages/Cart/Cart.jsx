@@ -4,6 +4,7 @@ import { RxCross1 } from "react-icons/rx";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { CiCircleInfo } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Cart = () => {
 
@@ -25,6 +26,14 @@ const Cart = () => {
         setCart(cart - 1);
         setSubTotal(subTotal - product.discountedPrice);
         product.quantity -= 1;
+    }
+    const handleDelete = (product) => {
+        const newCartItems = cartItems.filter(item => item !== product.id);
+        setCartItems(newCartItems);
+        setCart(cart - product.quantity);
+        setSubTotal(subTotal - (product.quantity * product.discountedPrice));
+        product.quantity = 1;
+        toast.success("Product deleted from the cart");
     }
 
     return (
@@ -49,8 +58,7 @@ const Cart = () => {
                             </div>
                         </div>
 
-                        <RxCross1 className="font-bold text-2xl" />
-
+                        <RxCross1 onClick={() => handleDelete(product)} className="font-bold text-2xl cursor-pointer" />
                     </div>)
                 }
             </div>
