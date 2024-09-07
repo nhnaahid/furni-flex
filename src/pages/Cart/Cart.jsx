@@ -37,24 +37,24 @@ const Cart = () => {
     }
 
     return (
-        <div className="flex justify-between mt-16">
+        <div className="flex flex-col md:flex-row justify-between mt-16  gap-10 md:gap-0">
             {/* Products */}
-            <div className="w-3/5 space-y-5">
+            <div className="w-full md:w-3/5 space-y-5">
                 <h2 className="font-bold text-xl">An overview of your order</h2>
                 {
-                    cartProducts.map(product => <div key={product.id} className="flex justify-between items-center border rounded-lg bg-blue-50 px-7">
+                    cartProducts.map(product => <div key={product.id} className="flex justify-between items-center border rounded-lg bg-blue-50 px-2 lg:px-7">
 
                         <div className="border rounded-lg px-2 py-1 flex items-center justify-between">
-                            <button className={`${product.quantity < 2 && "btn-disabled text-gray-400"}`} onClick={() => handleRemove(product)}> <FaMinus /> </button>
-                            <span className="font-bold text-lg ml-2 mr-2">{product.quantity}</span>
-                            <button onClick={() => handleAdd(product)}> <FaPlus /> </button>
+                            <button className={`${product.quantity < 2 && "btn-disabled text-gray-400"} text-sm`} onClick={() => handleRemove(product)}> <FaMinus /> </button>
+                            <span className="font-bold text-sm md:text-lg ml-2 mr-2">{product.quantity}</span>
+                            <button className="text-sm" onClick={() => handleAdd(product)}> <FaPlus /> </button>
                         </div>
 
-                        <div className="flex items-center gap-3">
-                            <img src={product.image} alt="Product Image" />
+                        <div className="flex items-center gap-1 lg:gap-3">
+                            <img className="w-3/5 lg:w-full " src={product.image} alt="Product Image" />
                             <div className="space-y-2">
-                                <p className="font-bold text-lg">{product.name}</p>
-                                <p className="font-bold text-red-500">€{product.discountedPrice}</p>
+                                <p className="font-bold text-md md:text-lg">{product.name}</p>
+                                <p className="font-bold text-sm text-red-500">€{product.discountedPrice}</p>
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@ const Cart = () => {
                 }
             </div>
             {/* order details */}
-            <div className="w-1/3 space-y-5">
+            <div className="w-full md:w-1/3 space-y-5">
                 <h2 className="font-bold text-xl">Oder details</h2>
                 <div className="border rounded-lg bg-blue-50 py-3 px-7 font-semibold space-y-2">
                     <div className="flex justify-between">
@@ -75,7 +75,7 @@ const Cart = () => {
                         <p>Free</p>
                     </div>
                     <div className="flex justify-between">
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 lg:gap-3">
                             <p>Estimated Tax</p>
                             <CiCircleInfo />
                         </div>
