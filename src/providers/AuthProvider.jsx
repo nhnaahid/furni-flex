@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
     const [cart, setCart] = useState(0);
     const [products, setProducts] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    const [subTotal, setSubTotal] = useState(0);
 
     useEffect(() => {
         fetch('furniture.json')
@@ -69,7 +70,9 @@ const AuthProvider = ({ children }) => {
         setCart,
         products,
         cartItems,
-        setCartItems
+        setCartItems,
+        subTotal,
+        setSubTotal
     }
 
     return (

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 
 const Products = () => {
-    const { products, cart, setCart, cartItems, setCartItems } = useContext(AuthContext);
+    const { products, cart, setCart, cartItems, setCartItems, subTotal, setSubTotal } = useContext(AuthContext);
     const [cat, setCat] = useState("Rocking Chair");
 
     const categories = products.reduce((acc, cur) => {
@@ -16,8 +16,9 @@ const Products = () => {
     // console.log(categories);
 
     const handleAddCart = (product) => {
-        setCartItems([...cartItems, product.id])
+        setCartItems([...cartItems, product.id]);
         setCart(cart + 1);
+        setSubTotal(subTotal + product.discountedPrice);
         toast.success("Success! Product added to the Cart.");
     }
     // console.log(cartItems);
