@@ -5,16 +5,19 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Checkout = () => {
-    const { products, cartItems, subTotal } = useContext(AuthContext);
+    const { products, cartItems, subTotal, setCartItems, setCart, setSubTotal } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const cartProducts = cartItems.map(item => {
         return products.find(product => product.id === item);
     })
     const handleCheckout = () => {
-        toast.success("Success! Order Placed.");
+        cartProducts.map(product => product.quantity = 1);
+        setCart(0);
+        setCartItems([]);
+        setSubTotal(0);
         navigate('/products');
-        window.location.reload();
+        toast.success("Success! Order Placed.");
     }
 
     return (

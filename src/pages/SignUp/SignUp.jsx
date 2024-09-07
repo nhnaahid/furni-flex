@@ -22,7 +22,7 @@ const SignUp = () => {
         const isChecked = form.tnp.checked;
         const name = first + last;
 
-        console.log(name, email, password, isChecked);
+        //console.log(name, email, password, isChecked);
 
         if (password.length < 6 || password.length > 15) {
             return toast.error('Password must be between 6 and 15 characters.')

@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
     const { user, logOut, cart } = useContext(AuthContext);
-    console.log(user);
-    console.log(user?.photoURL);
+    //console.log(user);
+    //console.log(user?.photoURL);
 
     const handleLogout = () => {
         logOut()
