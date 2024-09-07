@@ -51,7 +51,7 @@ const Products = () => {
                                         <p className="text-red-500">{product.discountPercent}% OFF</p>
                                     </div>
                                     <p className="text-sm">{product.description}</p>
-                                    <button onClick={() => handleAddCart(product)} className={`btn btn-sm bg-black text-white w-full hover:bg-gray-900 ${cartItems.includes(product.id) && "btn-disabled"}`}>Add to Cart</button>
+                                    <button onClick={() => handleAddCart(product)} className={`btn btn-sm bg-black text-white w-full hover:bg-gray-900 ${cartItems.includes(product.id) && "btn-disabled"}`}>{cartItems.includes(product.id) ? 'Added' : 'Add to Cart'}</button>
                                 </div>
                             </div>
                         }
